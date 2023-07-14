@@ -1,0 +1,7 @@
+{
+  "name": "twitter-web3",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
