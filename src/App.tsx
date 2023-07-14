@@ -10,10 +10,12 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { create, person, home } from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
+import { create, person, home, search, heart } from 'ionicons/icons';
+import Home from './pages/Home';
+import Create from './pages/Create';
+import Profile from './pages/Profile';
+import Search from './pages/Search';
+import Notifications from './pages/Notifications';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -42,32 +44,41 @@ const App: React.FC = () => (
       <IonTabs>
 
         <IonRouterOutlet>
-          <Route exact path="/tab1">
-            <Tab1 />
+          <Route exact path="/home">
+            <Home />
           </Route>
-          <Route exact path="/tab2">
-            <Tab2 />
+          <Route path="/search">
+            <Search />
           </Route>
-          <Route path="/tab3">
-            <Tab3 />
+          <Route exact path="/create">
+            <Create />
+          </Route>
+          <Route exact path="/notifications">
+            <Notifications />
+          </Route>
+          <Route path="/profile">
+            <Profile />
           </Route>
           <Route exact path="/">
-            <Redirect to="/tab1" />
+            <Redirect to="/home" />
           </Route>
         </IonRouterOutlet>
 
         <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
+          <IonTabButton tab="home" href="/home">
             <IonIcon aria-hidden="true" icon={home} />
-            <IonLabel>Tab 1</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
+          <IonTabButton tab="search" href="/search">
+            <IonIcon aria-hidden="true" icon={search} />
+          </IonTabButton>
+          <IonTabButton tab="create" href="/create">
             <IonIcon aria-hidden="true" icon={create} />
-            <IonLabel>Tab 2</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
+          <IonTabButton tab="notifications" href="/notifications">
+            <IonIcon aria-hidden="true" icon={heart} />
+          </IonTabButton>
+          <IonTabButton tab="profile" href="/profile">
             <IonIcon aria-hidden="true" icon={person} />
-            <IonLabel>Tab 3</IonLabel>
           </IonTabButton>
         </IonTabBar>
 
