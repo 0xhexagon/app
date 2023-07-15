@@ -1,5 +1,55 @@
+.thread {
+	padding: 15px;
+	border-top: 1px solid #383838;
+}
+
+.thread-header {
+	display: grid;
+	grid-template-columns: 1fr 7fr 1fr;
+	column-gap: 10px;
+	/* background-color: red; */
+	height: 40px;
+}
+
+.thread-header > * {
+	align-self: center;
+	justify-self: start;
+}
+
+/* .thread-header-user { */
+	/* background-color: blue; */
+	/* display: flex; */
+	/* flex-direction: column; */
+	/* justify-content: space-between; */
+	/* width: 100%; */
+/* } */
+
+.thread-header-user > p {
+	margin: 0;
+	line-height: 15px;
+}
+
+.thread-header-user-username {
+	font-size: 13px;
+}
+
+.thread-header > ion-avatar {
+	height: inherit;
+	width: 40px;
+}
+
 .thread-content {
-	margin-left: 20px;
+	margin-left: 19px;
 	padding-left: 20px;
 	border-left: 1px solid grey;
 }
+
+.thread-content > p {
+	margin: 0;
+}
+
+.thread-content-buttons {
+	display: flex;
+	/* justify-content: end; */
+}
+
