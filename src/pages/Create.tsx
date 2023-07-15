@@ -1,5 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
+import { IonContent, IonHeader, IonInput, IonItem, IonPage, IonTextarea, IonTitle, IonToolbar } from '@ionic/react';
 
 const Create: React.FC = () => {
   return (
@@ -9,13 +8,11 @@ const Create: React.FC = () => {
           <IonTitle>Create</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Tab 2</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer name="Tab 2 page" />
+      <IonContent className='ion-padding'>
+
+        <IonItem>
+			<IonTextarea placeholder="What's on your mind?"></IonTextarea>
+        </IonItem>
       </IonContent>
     </IonPage>
   );

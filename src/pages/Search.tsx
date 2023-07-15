@@ -1,22 +1,21 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
+import { IonContent, IonHeader, IonPage, IonSearchbar, IonTitle, IonToolbar } from '@ionic/react';
 
 const Search: React.FC = () => {
   return (
     <IonPage>
+
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Search</IonTitle>
+          <IonTitle>Discover</IonTitle>
         </IonToolbar>
+		<IonToolbar style={{padding: '0 10px'}}>
+			<IonSearchbar></IonSearchbar>
+		</IonToolbar>
       </IonHeader>
+
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Tab 1</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer name="Tab 1 page" />
       </IonContent>
+
     </IonPage>
   );
 };
