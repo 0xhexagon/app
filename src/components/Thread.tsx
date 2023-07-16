@@ -1,4 +1,4 @@
-import { IonButton, IonChip, IonContent, IonIcon, IonItem, IonLabel, IonPopover } from '@ionic/react';
+import { IonButton, IonCol, IonContent, IonGrid, IonIcon, IonItem, IonPopover, IonRow } from '@ionic/react';
 import Avatar from './Avatar';
 import './Thread.css'
 import { chatbubbleOutline, ellipsisHorizontal, heartOutline, repeatOutline } from 'ionicons/icons';
@@ -6,29 +6,31 @@ import { chatbubbleOutline, ellipsisHorizontal, heartOutline, repeatOutline } fr
 interface IProps {
 	id: string
 }
-const Thread: React.FC<IProps> = ({id}) => {
+const Thread: React.FC<IProps> = ({ id }) => {
 	return (
 		<div className='thread'>
-			<div className='thread-header'>
-				{/* Grid */}
-				<Avatar />
-				<div className='thread-header-user'>
-					{/* Flex */}
-					<p>Pato Purific</p>
-					<p className='thread-header-user-username'>@patopurific</p>
-				</div>
-				<div>
-					<IonButton fill='clear' size='small' id={`thread-options-${id}`}>
-						<IonIcon slot='icon-only' icon={ellipsisHorizontal} />
-					</IonButton>
-					<IonPopover trigger={`thread-options-${id}`}>
-						<IonContent>
-							<IonItem button={true} detail={false}>Share...</IonItem>
-							<IonItem button={true} detail={false}>Report</IonItem>
-						</IonContent>
-					</IonPopover>
-				</div>
-			</div>
+			<IonGrid className='thread-header'>
+				<IonRow>
+					<IonCol size='auto' className='thread-header-col'>
+						<Avatar />
+					</IonCol>
+					<IonCol className='thread-header-col'>
+						<p>Pato Purific</p>
+						<p className='thread-username'>@patopurific</p>
+					</IonCol>
+					<IonCol size='auto' className='thread-header-col'>
+						<IonButton fill='clear' size='small' id={`thread-options-${id}`}>
+							<IonIcon slot='icon-only' icon={ellipsisHorizontal} />
+						</IonButton>
+						<IonPopover trigger={`thread-options-${id}`}>
+							<IonContent>
+								<IonItem button={true} detail={false}>Share...</IonItem>
+								<IonItem button={true} detail={false}>Report</IonItem>
+							</IonContent>
+						</IonPopover>
+					</IonCol>
+				</IonRow>
+			</IonGrid>
 			<div className='thread-content'>
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 				<div className="thread-content-buttons">

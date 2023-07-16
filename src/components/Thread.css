@@ -1,43 +1,34 @@
+/* Thread */
 .thread {
 	padding: 15px;
 	border-top: 1px solid #383838;
 }
 
-.thread-header {
-	display: grid;
-	grid-template-columns: 1fr 7fr 1fr;
-	column-gap: 10px;
-	/* background-color: red; */
-	height: 40px;
-}
-
-.thread-header > * {
-	align-self: center;
-	justify-self: start;
-}
-
-/* .thread-header-user { */
-	/* background-color: blue; */
-	/* display: flex; */
-	/* flex-direction: column; */
-	/* justify-content: space-between; */
-	/* width: 100%; */
-/* } */
-
-.thread-header-user > p {
-	margin: 0;
-	line-height: 15px;
-}
-
-.thread-header-user-username {
+/* Header */
+.thread-username {
 	font-size: 13px;
 }
-
-.thread-header > ion-avatar {
+.thread-header > * {
+	line-height: 13px;
+}
+.thread-header-col > p {
+	margin: 0;
+}
+.thread-header-col > ion-avatar {
 	height: inherit;
 	width: 40px;
 }
+.thread-header-col {
+	align-self: center;
+}
+.thread-header-col:nth-child(2) {
+	margin-left: 10px;
+}
+.thread-header, .thread-header-col {
+	padding: 0;
+}
 
+/* Content */
 .thread-content {
 	margin-left: 19px;
 	padding-left: 20px;
