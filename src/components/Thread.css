@@ -27,6 +27,9 @@
 .thread-header, .thread-header-col {
 	padding: 0;
 }
+.thread-username {
+	color: grey;
+}
 
 /* Content */
 .thread-content {
@@ -34,11 +37,18 @@
 	padding-left: 20px;
 	border-left: 1px solid grey;
 }
-
 .thread-content > p {
 	margin: 0;
 }
-
+.thread-content > .thread-imgs {
+	display: flex;
+	overflow-x: scroll;
+}
+.thread-content > .thread-imgs > img {
+	margin-top: 10px;
+	margin-right: 10px;
+	border-radius: 10px;
+}
 .thread-content-buttons {
 	display: flex;
 	/* justify-content: end; */

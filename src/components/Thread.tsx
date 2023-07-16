@@ -33,6 +33,10 @@ const Thread: React.FC<IProps> = ({ id }) => {
 			</IonGrid>
 			<div className='thread-content'>
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				<div className="thread-imgs">
+					<img src="https://picsum.photos/300/200" alt="sample"/>
+					<img src="https://picsum.photos/300/200" alt="sample"/>
+				</div>
 				<div className="thread-content-buttons">
 					<IonButton fill='clear' size='small'>
 						<IonIcon slot='icon-only' icon={heartOutline} />

@@ -1,4 +1,4 @@
-import { IonCard, IonContent, IonHeader, IonList, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import Thread from '../components/Thread';
 
 const Home: React.FC = () => {
