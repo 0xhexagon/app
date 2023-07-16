@@ -1,0 +1,3 @@
+ion-avatar > img {
+	mask-image: url('src/assets/svg/hexagon.svg');
+}
