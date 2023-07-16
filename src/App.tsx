@@ -35,38 +35,41 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 
+// Custom
+import './assets/style/global.css';
+import Settings from './pages/Settings';
+
 setupIonicReact();
 
 const App: React.FC = () => {
 	return (
-			<IonApp>
-				<IonReactRouter>
-					<IonTabs>
+		<IonApp>
 
-						<IonRouterOutlet>
-							<Route exact path="/home"><Home /></Route>
-							<Route path="/search"><Search /></Route>
-							<Route exact path="/create"><Create /></Route>
-							<Route exact path="/notifications"><Notifications /></Route>
-							<Route exact path="/profile"><Profile /></Route>
-							<Route exact path="/"><Redirect to="/home" /></Route>
-						</IonRouterOutlet>
+			<IonReactRouter>
 
-						<IonTabBar slot="bottom">
-							<IonTabButton tab="home" href="/home"> <IonIcon aria-hidden="true" icon={home} /> </IonTabButton>
-							<IonTabButton tab="search" href="/search"> <IonIcon aria-hidden="true" icon={search} /> </IonTabButton>
-							<IonTabButton tab="create" href="/create"> <IonIcon aria-hidden="true" icon={create} /> </IonTabButton>
-							<IonTabButton tab="notifications" href="/notifications"> <IonIcon aria-hidden="true" icon={heart} /> </IonTabButton>
-							<IonTabButton tab="profile" href='/profile'> <IonIcon aria-hidden="true" icon={person} /> </IonTabButton>
-						</IonTabBar>
+				<IonTabs>
 
-					</IonTabs>
+					<IonRouterOutlet>
+						<Route exact path="/home"><Home /></Route>
+						<Route path="/search"><Search /></Route>
+						<Route exact path="/create"><Create /></Route>
+						<Route exact path="/notifications"><Notifications /></Route>
+						<Route exact path="/profile"><Profile /></Route>
+						<Route exact path="/"><Redirect to="/home" /></Route>
+					</IonRouterOutlet>
 
-					{/* Here will be declared all the routes that won't have the tabs at the bottom of the screen */}
+					<IonTabBar slot="bottom">
+						<IonTabButton tab="home" href="/home"> <IonIcon aria-hidden="true" icon={home} /> </IonTabButton>
+						<IonTabButton tab="search" href="/search"> <IonIcon aria-hidden="true" icon={search} /> </IonTabButton>
+						<IonTabButton tab="create" href="/create"> <IonIcon aria-hidden="true" icon={create} /> </IonTabButton>
+						<IonTabButton tab="notifications" href="/notifications"> <IonIcon aria-hidden="true" icon={heart} /> </IonTabButton>
+						<IonTabButton tab="profile" href='/profile'> <IonIcon aria-hidden="true" icon={person} /> </IonTabButton>
+					</IonTabBar>
 
+				</IonTabs>
 
-				</IonReactRouter>
-			</IonApp>
+			</IonReactRouter>
+		</IonApp>
 	)
 }
 
