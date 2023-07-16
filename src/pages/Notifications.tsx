@@ -13,8 +13,8 @@ const Notifications: React.FC = () => {
       <IonContent className='ion-padding'>
 		<IonList>
 			<IonListHeader>Today</IonListHeader>
-			{sampleNotifications.map(element => (
-				<IonItem>
+			{sampleNotifications.map((element, index) => (
+				<IonItem key={index}>
 					<IonAvatar slot="start">
 						<img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
 					</IonAvatar>
@@ -22,8 +22,8 @@ const Notifications: React.FC = () => {
 				</IonItem>
 			))}
 			<IonListHeader>Yesterday</IonListHeader>
-			{sampleNotifications.map(element => (
-				<IonItem>
+			{sampleNotifications.map((element, index) => (
+				<IonItem key={index}>
 					<IonAvatar slot="start">
 						<img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
 					</IonAvatar>
