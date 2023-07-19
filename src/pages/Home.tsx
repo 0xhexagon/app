@@ -1,5 +1,5 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import Thread from '../components/Thread';
+import Post from '../components/Post';
 
 const Home: React.FC = () => {
 	return (
@@ -10,11 +10,11 @@ const Home: React.FC = () => {
 				</IonToolbar>
 			</IonHeader>
 			<IonContent>
-				<Thread id='1'/>
-				<Thread id='2'/>
-				<Thread id='3'/>
-				<Thread id='4'/>
-				<Thread id='5'/>
+				<Post id='1'/>
+				<Post id='2'/>
+				<Post id='3'/>
+				<Post id='4'/>
+				<Post id='5'/>
 			</IonContent>
 		</IonPage>
 	);

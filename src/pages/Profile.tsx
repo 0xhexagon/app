@@ -1,12 +1,12 @@
 import { IonAvatar, IonButton, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonLabel, IonPage, IonRouterLink, IonRow, IonSegment, IonSegmentButton, IonTitle, IonToolbar } from '@ionic/react';
 import Avatar from '../components/Avatar';
-import ThreadsSegment from '../components/ThreadsSegment';
+import PostSegment from '../components/PostSegment';
 import { useState } from 'react';
 import { settingsOutline } from 'ionicons/icons';
 import './Profile.css'
 
 const Profile: React.FC = () => {
-	const [threadsSegment, setThreadsSegment] = useState<boolean>(true)
+	const [postSegment, setPostSegment] = useState<boolean>(true)
 	return (
 		<IonPage>
 
@@ -31,7 +31,6 @@ const Profile: React.FC = () => {
 
 					<IonRow className='ion-padding-horizontal'>
 						{/* Buttons (edit, share) */}
-						{/* <div style={{ display: 'flex', justifyContent: 'space-around' }}> */}
 						<IonCol>
 							<IonButton className='w-100' color='light' size='small'>Edit</IonButton>
 						</IonCol>
@@ -54,11 +53,11 @@ const Profile: React.FC = () => {
 					</IonRow>
 					<IonRow>
 						{/* segments */}
-						<IonSegment value={threadsSegment ? 'threads' : 'mentions'}>
-							<IonSegmentButton onClick={() => setThreadsSegment(true)} value='threads'>
-								<IonLabel>Threads</IonLabel>
+						<IonSegment value={postSegment ? 'posts' : 'mentions'}>
+							<IonSegmentButton onClick={() => setPostSegment(true)} value='posts'>
+								<IonLabel>Posts</IonLabel>
 							</IonSegmentButton>
-							<IonSegmentButton onClick={() => setThreadsSegment(false)} value='mentions'>
+							<IonSegmentButton onClick={() => setPostSegment(false)} value='mentions'>
 								<IonLabel>Mentions</IonLabel>
 							</IonSegmentButton>
 						</IonSegment>
@@ -68,8 +67,8 @@ const Profile: React.FC = () => {
 
 			<IonContent>
 				{
-					threadsSegment
-						? <ThreadsSegment />
+					postSegment
+						? <PostSegment />
 						: <h1>mentions</h1>
 				}
 			</IonContent>

@@ -1,12 +1,12 @@
 import { IonButton, IonCol, IonContent, IonGrid, IonIcon, IonItem, IonPopover, IonRow } from '@ionic/react';
 import Avatar from './Avatar';
-import './Thread.css'
+import './Post.css'
 import { chatbubbleOutline, ellipsisHorizontal, heartOutline, repeatOutline } from 'ionicons/icons';
 
 interface IProps {
 	id: string
 }
-const Thread: React.FC<IProps> = ({ id }) => {
+const Post: React.FC<IProps> = ({ id }) => {
 	return (
 		<div className='thread'>
 			<IonGrid className='thread-header'>
@@ -53,4 +53,4 @@ const Thread: React.FC<IProps> = ({ id }) => {
 	);
 };
 
-export default Thread;
+export default Post;
