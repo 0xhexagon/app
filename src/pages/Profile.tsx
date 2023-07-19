@@ -1,8 +1,11 @@
 import { IonAvatar, IonButton, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonLabel, IonPage, IonRow, IonSegment, IonSegmentButton, IonTitle, IonToolbar } from '@ionic/react';
 import Avatar from '../components/Avatar';
 import { settingsOutline } from 'ionicons/icons';
+import './Profile.css'
+import { useState } from 'react';
 
 const Profile: React.FC = () => {
+	const [threadsSegment, setThreadsSegment] = useState<boolean>(true)
 	return (
 		<IonPage>
 
@@ -18,9 +21,9 @@ const Profile: React.FC = () => {
 			<IonContent fullscreen>
 				<IonGrid>
 
-					<IonRow className='ion-padding'>
+					<IonRow id='profile-first-row' className='ion-padding'>
 						{/* Profile and photo */}
-						<IonCol size='auto'>
+						<IonCol>
 							<p>Pato Purific</p>
 							<p>@patopurific</p>
 						</IonCol>
@@ -29,15 +32,19 @@ const Profile: React.FC = () => {
 						</IonCol>
 					</IonRow>
 
-					<IonRow>
+					<IonRow className='ion-padding-horizontal'>
 						{/* Buttons (edit, share) */}
-						<div style={{ display: 'flex', justifyContent: 'space-around' }}>
-							<IonButton fill='outline' size='small'>Edit</IonButton>
-							<IonButton fill='outline' size='small'>Share</IonButton>
-						</div>
+						{/* <div style={{ display: 'flex', justifyContent: 'space-around' }}> */}
+						<IonCol>
+							<IonButton className='w-100' color='medium' fill='outline' size='small'>Edit</IonButton>
+						</IonCol>
+						<IonCol>
+							<IonButton className='w-100' color='medium' fill='outline' size='small'>Share</IonButton>
+						</IonCol>
+						{/* </div> */}
 					</IonRow>
 
-					<IonRow>
+					<IonRow className='ion-padding'>
 						{/* poaps */}
 						<IonCol>
 							<IonAvatar>
@@ -48,14 +55,19 @@ const Profile: React.FC = () => {
 
 					<IonRow>
 						{/* segments */}
-						<IonSegment value='threads'>
-							<IonSegmentButton value='threads'>
+						<IonSegment value={threadsSegment ? 'threads' : 'mentions'}>
+							<IonSegmentButton onClick={() => setThreadsSegment(true)} value='threads'>
 								<IonLabel>Threads</IonLabel>
 							</IonSegmentButton>
-							<IonSegmentButton value='mentions'>
+							<IonSegmentButton onClick={() => setThreadsSegment(false)} value='mentions'>
 								<IonLabel>Mentions</IonLabel>
 							</IonSegmentButton>
 						</IonSegment>
+						{
+							threadsSegment
+								? <h1>threads</h1>
+								: <h1>mentions</h1>
+						}
 					</IonRow>
 
 				</IonGrid>

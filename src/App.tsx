@@ -37,7 +37,6 @@ import './theme/variables.css';
 
 // Custom
 import './assets/style/global.css';
-import Settings from './pages/Settings';
 
 setupIonicReact();
 
@@ -49,6 +48,8 @@ const App: React.FC = () => {
 
 				<IonTabs>
 
+					{/* Router example */}
+					{/* https://stackblitz.com/edit/ionic-react-routing?file=src%2FApp.tsx */}
 					<IonRouterOutlet>
 						<Route exact path="/home"><Home /></Route>
 						<Route path="/search"><Search /></Route>

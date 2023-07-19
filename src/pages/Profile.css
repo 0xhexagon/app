@@ -1,0 +1,15 @@
+#profile-first-row {
+	/* background-color: red; */
+	text-align: center;
+	line-height: 5px;
+}
+#profile-first-row ion-col {
+	/* background-color: blue; */
+	align-self: center;
+}
+
+#profile-first-row ion-col ion-avatar {
+	margin: 0 auto;
+	width: 50%;
+	height: auto;
+}
