@@ -1,8 +1,9 @@
 import { IonAvatar, IonButton, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonLabel, IonPage, IonRow, IonSegment, IonSegmentButton, IonTitle, IonToolbar } from '@ionic/react';
 import Avatar from '../components/Avatar';
+import ThreadsSegment from '../components/ThreadsSegment';
+import { useState } from 'react';
 import { settingsOutline } from 'ionicons/icons';
 import './Profile.css'
-import { useState } from 'react';
 
 const Profile: React.FC = () => {
 	const [threadsSegment, setThreadsSegment] = useState<boolean>(true)
@@ -16,11 +17,7 @@ const Profile: React.FC = () => {
 						<IonIcon slot='icon-only' icon={settingsOutline} />
 					</IonButton>
 				</IonToolbar>
-			</IonHeader>
-
-			<IonContent fullscreen>
 				<IonGrid>
-
 					<IonRow id='profile-first-row' className='ion-padding'>
 						{/* Profile and photo */}
 						<IonCol>
@@ -36,23 +33,25 @@ const Profile: React.FC = () => {
 						{/* Buttons (edit, share) */}
 						{/* <div style={{ display: 'flex', justifyContent: 'space-around' }}> */}
 						<IonCol>
-							<IonButton className='w-100' color='medium' fill='outline' size='small'>Edit</IonButton>
+							<IonButton className='w-100' color='light' size='small'>Edit</IonButton>
 						</IonCol>
 						<IonCol>
-							<IonButton className='w-100' color='medium' fill='outline' size='small'>Share</IonButton>
+							<IonButton className='w-100' color='light' size='small'>Share</IonButton>
 						</IonCol>
 						{/* </div> */}
 					</IonRow>
 
 					<IonRow className='ion-padding'>
 						{/* poaps */}
-						<IonCol>
+						<div className='d-flex'>
 							<IonAvatar>
 								<img style={{ height: '50px', width: '50px' }} alt="Default avatar" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
 							</IonAvatar>
-						</IonCol>
+							<IonAvatar>
+								<img style={{ height: '50px', width: '50px' }} alt="Default avatar" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+							</IonAvatar>
+						</div>
 					</IonRow>
-
 					<IonRow>
 						{/* segments */}
 						<IonSegment value={threadsSegment ? 'threads' : 'mentions'}>
@@ -63,14 +62,16 @@ const Profile: React.FC = () => {
 								<IonLabel>Mentions</IonLabel>
 							</IonSegmentButton>
 						</IonSegment>
-						{
-							threadsSegment
-								? <h1>threads</h1>
-								: <h1>mentions</h1>
-						}
 					</IonRow>
-
 				</IonGrid>
+			</IonHeader>
+
+			<IonContent>
+				{
+					threadsSegment
+						? <ThreadsSegment />
+						: <h1>mentions</h1>
+				}
 			</IonContent>
 
 		</IonPage>
