@@ -15,6 +15,7 @@ import Create from './pages/Create';
 import Profile from './pages/Profile';
 import Search from './pages/Search';
 import Notifications from './pages/Notifications';
+import Settings from './pages/Settings';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -48,14 +49,15 @@ const App: React.FC = () => {
 
 				<IonTabs>
 
-					{/* Router example */}
-					{/* https://stackblitz.com/edit/ionic-react-routing?file=src%2FApp.tsx */}
 					<IonRouterOutlet>
 						<Route exact path="/home"><Home /></Route>
 						<Route path="/search"><Search /></Route>
 						<Route exact path="/create"><Create /></Route>
 						<Route exact path="/notifications"><Notifications /></Route>
+
 						<Route exact path="/profile"><Profile /></Route>
+						<Route exact path="/profile/settings"><Settings /></Route>
+
 						<Route exact path="/"><Redirect to="/home" /></Route>
 					</IonRouterOutlet>
 
