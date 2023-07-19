@@ -1,4 +1,4 @@
-import { IonAvatar, IonButton, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonLabel, IonPage, IonRow, IonSegment, IonSegmentButton, IonTitle, IonToolbar } from '@ionic/react';
+import { IonAvatar, IonButton, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonLabel, IonPage, IonRouterLink, IonRow, IonSegment, IonSegmentButton, IonTitle, IonToolbar } from '@ionic/react';
 import Avatar from '../components/Avatar';
 import ThreadsSegment from '../components/ThreadsSegment';
 import { useState } from 'react';
@@ -13,7 +13,7 @@ const Profile: React.FC = () => {
 			<IonHeader>
 				<IonToolbar>
 					<IonTitle>Profile</IonTitle>
-					<IonButton slot='end' fill='clear' size='small'>
+					<IonButton routerLink='/profile/settings' slot='end' fill='clear' size='small'>
 						<IonIcon slot='icon-only' icon={settingsOutline} />
 					</IonButton>
 				</IonToolbar>
