@@ -1,13 +1,5 @@
 import { Redirect, Route } from 'react-router-dom';
-import {
-	IonApp,
-	IonIcon,
-	IonRouterOutlet,
-	IonTabBar,
-	IonTabButton,
-	IonTabs,
-	setupIonicReact
-} from '@ionic/react';
+import { IonApp, IonIcon, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { create, person, home, search, heart } from 'ionicons/icons';
 import Home from './pages/Home';
@@ -50,13 +42,13 @@ const App: React.FC = () => {
 				<IonTabs>
 
 					<IonRouterOutlet>
-						<Route exact path="/home"><Home /></Route>
-						<Route path="/search"><Search /></Route>
-						<Route exact path="/create"><Create /></Route>
-						<Route exact path="/notifications"><Notifications /></Route>
+						<Route exact path="/home" render={() => <Home />}/>
+						<Route path="/search" render={() => <Search />}/>
+						<Route exact path="/create" render={() => <Create />}/>
+						<Route exact path="/notifications" render={() => <Notifications />}/>
 
-						<Route exact path="/profile"><Profile /></Route>
-						<Route exact path="/profile/settings"><Settings /></Route>
+						<Route exact path="/profile" render={() => <Profile />}/>
+						<Route exact path="/profile/settings" render={() => <Settings />}/>
 
 						<Route exact path="/"><Redirect to="/home" /></Route>
 					</IonRouterOutlet>
@@ -76,4 +68,4 @@ const App: React.FC = () => {
 	)
 }
 
-export default App;
+export default App
