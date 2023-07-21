@@ -1,13 +1,6 @@
 import { Redirect, Route } from 'react-router-dom';
-import { IonApp, IonIcon, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs, setupIonicReact } from '@ionic/react';
+import { IonApp, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { create, person, home, search, heart } from 'ionicons/icons';
-import Home from './pages/Home';
-import Create from './pages/Create';
-import Profile from './pages/Profile';
-import Search from './pages/Search';
-import Notifications from './pages/Notifications';
-import Settings from './pages/Settings';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -30,48 +23,33 @@ import './theme/variables.css';
 
 // Custom
 import './assets/style/global.css';
-import UserPage from './pages/UserPage';
-import PostPage from './pages/PostPage';
-import CommunityPage from './pages/CommunityPage';
+
+import Tabs from './pages/Tabs';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 setupIonicReact();
+
+const isAuth = false
 
 const App: React.FC = () => {
 	return (
 		<IonApp>
-
 			<IonReactRouter>
+				{isAuth 
+					? <>
+						<Route path='/app' render={(props) => <Tabs {...props} />} />
 
-				<IonTabs>
-
-					<IonRouterOutlet>
-						<Route exact path="/home" render={() => <Home />}/>
-						<Route exact path="/home/user/:userId" render={(props) => <UserPage {...props} />}/>
-						<Route exact path="/home/post/:postId" render={(props) => <PostPage {...props} />}/>
-						<Route exact path="/home/community/:communityId" render={(props) => <CommunityPage {...props} />}/>
-
-						<Route path="/search" render={() => <Search />}/>
-
-						<Route exact path="/create" render={() => <Create />}/>
-
-						<Route exact path="/notifications" render={() => <Notifications />}/>
-
-						<Route exact path="/profile" render={() => <Profile />}/>
-						<Route exact path="/profile/settings" render={() => <Settings />}/>
-
-						<Route exact path="/"><Redirect to="/home" /></Route>
-					</IonRouterOutlet>
-
-					<IonTabBar slot="bottom">
-						<IonTabButton tab="home" href="/home"> <IonIcon aria-hidden="true" icon={home} /> </IonTabButton>
-						<IonTabButton tab="search" href="/search"> <IonIcon aria-hidden="true" icon={search} /> </IonTabButton>
-						<IonTabButton tab="create" href="/create"> <IonIcon aria-hidden="true" icon={create} /> </IonTabButton>
-						<IonTabButton tab="notifications" href="/notifications"> <IonIcon aria-hidden="true" icon={heart} /> </IonTabButton>
-						<IonTabButton tab="profile" href='/profile'> <IonIcon aria-hidden="true" icon={person} /> </IonTabButton>
-					</IonTabBar>
-
-				</IonTabs>
-
+						<Route exact path='/'><Redirect to='/app' /></Route>
+						<Route exact path='/login'><Redirect to='/app' /></Route>
+						<Route exact path='/signup'><Redirect to='/app' /></Route>
+					</>
+					: <>
+						<Route exact path='/login' render={() => <Login />} />
+						<Route exact path='/signup' render={() => <Signup />} />
+						<Route><Redirect to='/login' /></Route>
+					</>
+				}
 			</IonReactRouter>
 		</IonApp>
 	)

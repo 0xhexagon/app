@@ -13,7 +13,7 @@ const Profile: React.FC = () => {
 			<IonHeader>
 				<IonToolbar>
 					<IonTitle>Profile</IonTitle>
-					<IonButton routerLink='/profile/settings' slot='end' fill='clear' size='small'>
+					<IonButton routerLink='/app/profile/settings' slot='end' fill='clear' size='small'>
 						<IonIcon slot='icon-only' icon={settingsOutline} />
 					</IonButton>
 				</IonToolbar>
