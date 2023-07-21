@@ -19,7 +19,12 @@ const Settings: React.FC = () => {
 				</IonToolbar>
 			</IonHeader>
 			<IonContent className='ion-padding'>
-				<h1>hola</h1>
+				<h1>Incluir...</h1>
+				<ul>
+					<li>Tema de la app?</li>
+					<li>Privacidad</li>
+					<li>Logout</li>
+				</ul>
 			</IonContent>
 		</IonPage>
 	)
