@@ -30,6 +30,9 @@ import './theme/variables.css';
 
 // Custom
 import './assets/style/global.css';
+import UserPage from './pages/UserPage';
+import PostPage from './pages/PostPage';
+import CommunityPage from './pages/CommunityPage';
 
 setupIonicReact();
 
@@ -43,8 +46,14 @@ const App: React.FC = () => {
 
 					<IonRouterOutlet>
 						<Route exact path="/home" render={() => <Home />}/>
+						<Route exact path="/home/user/:userId" render={(props) => <UserPage {...props} />}/>
+						<Route exact path="/home/post/:postId" render={(props) => <PostPage {...props} />}/>
+						<Route exact path="/home/community/:communityId" render={(props) => <CommunityPage {...props} />}/>
+
 						<Route path="/search" render={() => <Search />}/>
+
 						<Route exact path="/create" render={() => <Create />}/>
+
 						<Route exact path="/notifications" render={() => <Notifications />}/>
 
 						<Route exact path="/profile" render={() => <Profile />}/>
