@@ -10,7 +10,7 @@ const Home: React.FC = () => {
 				</IonToolbar>
 			</IonHeader>
 			<IonContent>
-				<Post id='1'/>
+				<Post id='1' commented/>
 				<Post id='2'/>
 				<Post id='3'/>
 				<Post id='4'/>

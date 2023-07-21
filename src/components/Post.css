@@ -32,10 +32,14 @@
 }
 
 /* Content */
-.thread-content {
+.thread-content-commented {
 	margin-left: 19px;
 	padding-left: 20px;
 	border-left: 1px solid grey;
+}
+.thread-content-empty {
+	margin-left: 20px;
+	padding-left: 20px;
 }
 .thread-content > p {
 	margin: 0;
@@ -52,5 +56,14 @@
 .thread-content-buttons {
 	display: flex;
 	/* justify-content: end; */
+}
+
+/* Footer */
+.thread-footer {
+	/* display: flex */
+}
+.thread-footer ion-avatar {
+	/* width: 20px; */
+	/* height: auto; */
 }
 

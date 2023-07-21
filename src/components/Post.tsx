@@ -4,9 +4,10 @@ import './Post.css'
 import { chatbubbleOutline, ellipsisHorizontal, heartOutline, repeatOutline } from 'ionicons/icons';
 
 interface IProps {
-	id: string
+	id: string,
+	commented?: boolean,
 }
-const Post: React.FC<IProps> = ({ id }) => {
+const Post: React.FC<IProps> = ({ id, commented = false }) => {
 	return (
 		<div className='thread'>
 			<IonGrid className='thread-header'>
@@ -31,8 +32,8 @@ const Post: React.FC<IProps> = ({ id }) => {
 					</IonCol>
 				</IonRow>
 			</IonGrid>
-			<div className='thread-content'>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			<div className={`thread-content ${commented ? 'thread-content-commented' : 'thread-content-empty'}`}>
+				<p className='thread-body'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 				<div className="thread-imgs">
 					<img src="https://picsum.photos/300/200" alt="sample"/>
 					<img src="https://picsum.photos/300/200" alt="sample"/>
@@ -48,6 +49,8 @@ const Post: React.FC<IProps> = ({ id }) => {
 						<IonIcon slot='icon-only' icon={chatbubbleOutline} />
 					</IonButton>
 				</div>
+			</div>
+			<div className='thread-footer'>
 			</div>
 		</div>
 	);
