@@ -1,7 +1,14 @@
-import { IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react'
-import React from 'react'
+import { IonBackButton, IonButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react'
+import { useAuth } from '@polybase/react'
+import React, { useEffect } from 'react'
 
 const Settings: React.FC = () => {
+	const {auth, state} = useAuth()
+
+	useEffect(() => {
+		console.log({state})
+	}, [state])
+
 	return (
 		<IonPage>
 			<IonHeader>
@@ -19,6 +26,7 @@ const Settings: React.FC = () => {
 					<li>Privacidad</li>
 					<li>Logout</li>
 				</ul>
+				<IonButton onClick={() => auth.signOut()}>Logout</IonButton>
 			</IonContent>
 		</IonPage>
 	)

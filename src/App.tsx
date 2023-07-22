@@ -27,28 +27,36 @@ import './assets/style/global.css';
 import Tabs from './pages/Tabs';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import { useIsAuthenticated } from '@polybase/react';
 
 setupIonicReact();
 
-const isAuth = false
 
 const App: React.FC = () => {
+	const [isLoggedIn] = useIsAuthenticated()
+	const isRegistered = true
+
 	return (
 		<IonApp>
 			<IonReactRouter>
-				{isAuth 
-					? <>
-						<Route path='/app' render={(props) => <Tabs {...props} />} />
+				{
+					isLoggedIn && isRegistered 
+						? <>
+							<Route path='/app' render={(props) => <Tabs {...props} />} />
 
-						<Route exact path='/'><Redirect to='/app' /></Route>
-						<Route exact path='/login'><Redirect to='/app' /></Route>
-						<Route exact path='/signup'><Redirect to='/app' /></Route>
-					</>
-					: <>
-						<Route exact path='/login' render={() => <Login />} />
-						<Route exact path='/signup' render={() => <Signup />} />
-						<Route><Redirect to='/login' /></Route>
-					</>
+							<Route exact path='/'><Redirect to='/app' /></Route>
+							<Route exact path='/login'><Redirect to='/app' /></Route>
+							<Route exact path='/signup'><Redirect to='/app' /></Route>
+						</>
+						: isLoggedIn
+							? <>
+								<Route exact path='/signup' render={() => <Signup />} />
+								<Route><Redirect to='/signup' /></Route>
+							</>
+							: <>
+								<Route exact path='/login' render={() => <Login />} />
+								<Route><Redirect to='/login' /></Route>
+							</>
 				}
 			</IonReactRouter>
 		</IonApp>
