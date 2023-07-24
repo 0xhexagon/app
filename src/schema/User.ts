@@ -1,4 +1,5 @@
 export const userSchema = `
+@public
 collection User {
 	id: string;
 	publicKey: PublicKey;
