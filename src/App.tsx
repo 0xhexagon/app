@@ -7,19 +7,23 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import { useIsAuthenticated } from '@polybase/react';
 import { useUser } from './context/user';
+import { useEffect } from 'react';
 
 setupIonicReact();
 
-
 const App: React.FC = () => {
 	const [isLoggedIn] = useIsAuthenticated()
-	const { user } = useUser()
+	const { user, getUserFromStorage } = useUser()
+
+	useEffect(() => {
+		getUserFromStorage()	
+	}, [])
 
 	return (
 		<IonApp>
 			<IonReactRouter>
 				{
-					isLoggedIn && !user
+					isLoggedIn && user
 						? <>
 							{/* Normal app usage */}
 							<Route path='/app' render={(props) => <Tabs {...props} />} />
