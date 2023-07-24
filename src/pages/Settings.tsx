@@ -1,13 +1,17 @@
 import { IonBackButton, IonButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react'
-import { useAuth } from '@polybase/react'
-import React, { useEffect } from 'react'
+import { useAuth, usePolybase } from '@polybase/react'
+import React from 'react'
+import Schema from '../schema'
 
 const Settings: React.FC = () => {
-	const {auth, state} = useAuth()
+	const { auth } = useAuth()
+	const polybase = usePolybase()
 
-	useEffect(() => {
-		console.log({state})
-	}, [state])
+	const applySchema = async () => {
+		polybase.applySchema(Schema)
+			.then(console.log)
+			.catch(console.error)
+	}
 
 	return (
 		<IonPage>
@@ -26,7 +30,8 @@ const Settings: React.FC = () => {
 					<li>Privacidad</li>
 					<li>Logout</li>
 				</ul>
-				<IonButton onClick={() => auth.signOut()}>Logout</IonButton>
+				<IonButton expand='full' onClick={() => auth.signOut()}>Logout</IonButton>
+				<IonButton expand='full' onClick={applySchema}>Apply schema</IonButton>
 			</IonContent>
 		</IonPage>
 	)
