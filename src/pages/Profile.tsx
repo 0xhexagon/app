@@ -4,9 +4,11 @@ import PostSegment from '../components/PostSegment';
 import { useState } from 'react';
 import { settingsOutline } from 'ionicons/icons';
 import './Profile.css'
+import { useUser } from '../context/user';
 
 const Profile: React.FC = () => {
 	const [postSegment, setPostSegment] = useState<boolean>(true)
+	const {user} = useUser()
 	return (
 		<IonPage>
 
@@ -21,8 +23,8 @@ const Profile: React.FC = () => {
 					<IonRow id='profile-first-row' className='ion-padding'>
 						{/* Profile and photo */}
 						<IonCol>
-							<p>Pato Purific</p>
-							<p>@patopurific</p>
+							<p>{user?.name}</p>
+							<p>{user?.username}</p>
 						</IonCol>
 						<IonCol>
 							<Avatar />

@@ -8,14 +8,13 @@ collection User {
 	profileNft?: string;
 	poaps?: string[];
 
-	constructor(name: string, username: string, profileNft?: string) {
-		this.id = ctx.publicKey.toHex();
+	@index(name, username);
+
+	constructor(id: string, name: string, username: string, profileNft?: string) {
+		this.id = id;
 		this.publicKey = ctx.publicKey;
 		this.name = name;
 		this.username = username;
-		this.profileNft = profileNft || [];
-		this.poaps = [];
-		this.following = [];
 	}
 
 	setName (name: string) {
@@ -32,6 +31,10 @@ collection User {
 
 	setPoaps (poaps: string[]) {
 		this.poaps = poaps;
+	}
+
+	del () {
+		selfdestruct();
 	}
 }
 

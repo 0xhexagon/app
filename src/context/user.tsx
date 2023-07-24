@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react"
+import { useStorage } from "./storage"
 
 export class User {
 	id: string
@@ -29,10 +30,26 @@ const UserContext = createContext<UserContextType>({
 
 // Hook  
 export const useUser = () => {
-	const {user, setUser} = useContext(UserContext)
+	const {user, setUser: update} = useContext(UserContext)
+	const storage = useStorage()
+
+	const setUser = async (u: User) => {
+		// Save to localstorage
+		await storage.set('user', JSON.stringify(u))
+
+		// Save to context
+		update(u)
+	}
+
+	const getUserFromStorage = async () => {
+		const res = await storage.get('user')
+		update(JSON.parse(res))
+	}
+
 	return {
 		user: user.id ? user : null,
-		setUser
+		setUser,
+		getUserFromStorage
 	}	
 }
 

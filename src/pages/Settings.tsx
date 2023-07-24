@@ -1,14 +1,31 @@
-import { IonBackButton, IonButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react'
+import { IonBackButton, IonButton, IonButtons, IonContent, IonHeader, IonItem, IonPage, IonTitle, IonToolbar } from '@ionic/react'
 import { useAuth, usePolybase } from '@polybase/react'
 import React from 'react'
 import Schema from '../schema'
+import { useUser } from '../context/user'
+import { useStorage } from '../context/storage'
 
 const Settings: React.FC = () => {
 	const { auth } = useAuth()
 	const polybase = usePolybase()
+	const storage = useStorage()
+	const {user} = useUser()
 
 	const applySchema = async () => {
 		polybase.applySchema(Schema)
+			.then(console.log)
+			.catch(console.error)
+	}
+	const deleteUser = () => {
+		polybase.collection('User')
+			.record(user?.id!)
+			.call('del')
+			.then(() => {
+				return storage.clear()
+			})
+			.then(() => {
+				return auth.signOut()
+			})
 			.then(console.log)
 			.catch(console.error)
 	}
@@ -24,6 +41,7 @@ const Settings: React.FC = () => {
 				</IonToolbar>
 			</IonHeader>
 			<IonContent className='ion-padding'>
+				<IonItem>{user?.username}</IonItem>
 				<h1>Incluir...</h1>
 				<ul>
 					<li>Tema de la app?</li>
@@ -32,6 +50,7 @@ const Settings: React.FC = () => {
 				</ul>
 				<IonButton expand='full' onClick={() => auth.signOut()}>Logout</IonButton>
 				<IonButton expand='full' onClick={applySchema}>Apply schema</IonButton>
+				<IonButton expand='full' color='danger' onClick={deleteUser}>Delete user</IonButton>
 			</IonContent>
 		</IonPage>
 	)
