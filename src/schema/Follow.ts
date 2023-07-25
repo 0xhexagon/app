@@ -1,10 +1,11 @@
 export const followSchema = `
+@public
 collection Follow {
 	id: string;
-	follower: string;
-	followee: string;
+	follower: User;
+	followee: User;
 
-	constructor(follower: string, followee: string) {
+	constructor(follower: User, followee: User) {
 		this.follower = follower;
 		this.followee = followee;
 	}

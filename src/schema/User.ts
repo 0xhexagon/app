@@ -5,6 +5,7 @@ collection User {
 	publicKey: PublicKey;
 	name: string;
 	username: string;
+	bio?: string;
 	profileNft?: string;
 	poaps?: string[];
 
@@ -17,23 +18,23 @@ collection User {
 		this.username = username;
 	}
 
-	setName (name: string) {
+	setName(name: string) {
 		this.name = name;
 	}
-
-	setUsername (username: string) {
+	setUsername(username: string) {
 		this.username = username;
 	}
-
-	setProfileNft (cid: string) {
+	setBio(bio: string) {
+		this.bio = bio;
+	}
+	setProfileNft(cid: string) {
 		this.profileNft = cid;
 	}
-
-	setPoaps (poaps: string[]) {
+	setPoaps(poaps: string[]) {
 		this.poaps = poaps;
 	}
 
-	del () {
+	del() {
 		selfdestruct();
 	}
 }
