@@ -33,24 +33,26 @@ export const useUser = () => {
 	const {user, setUser: update} = useContext(UserContext)
 	const storage = useStorage()
 
-	const setUser = async (u: User) => {
-		// Save to localstorage
-		await storage.set('user', JSON.stringify(u))
-
-		// Save to context
-		update(u)
+	const setUser = async (u: User | null) => {
+		if (u) {
+			await storage.set('user', JSON.stringify(u))
+			update(u)
+		} else {
+			await storage.remove('user')
+			update(new User())
+		}
 	}
 
 	const getUserFromStorage = async () => {
 		const res = await storage.get('user')
-		update(JSON.parse(res))
+		if (res) update(JSON.parse(res))
 	}
 
 	return {
 		user: user.id ? user : null,
 		setUser,
 		getUserFromStorage
-	}	
+	}
 }
 
 // Provider
@@ -59,9 +61,9 @@ interface Props {
 }
 const UserProvider: React.FC<Props> = ({ children }) => {
 	const [user, setUser] = useState<User>(new User())
-	
+
 	return (
-		<UserContext.Provider value={{user, setUser}}>
+		<UserContext.Provider value={{ user, setUser }}>
 			{children}
 		</UserContext.Provider>
 	)

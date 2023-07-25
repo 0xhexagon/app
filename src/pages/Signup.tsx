@@ -4,7 +4,7 @@ import { User, useUser } from "../context/user"
 import { useAuth, usePolybase } from "@polybase/react"
 
 const Signup: React.FC = () => {
-	const { user, setUser } = useUser()
+	const { setUser } = useUser()
 	const { state } = useAuth()
 	const polybase = usePolybase()
 

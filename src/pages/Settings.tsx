@@ -3,13 +3,11 @@ import { useAuth, usePolybase } from '@polybase/react'
 import React from 'react'
 import Schema from '../schema'
 import { useUser } from '../context/user'
-import { useStorage } from '../context/storage'
 
 const Settings: React.FC = () => {
 	const { auth } = useAuth()
 	const polybase = usePolybase()
-	const storage = useStorage()
-	const {user} = useUser()
+	const {user, setUser} = useUser()
 
 	const applySchema = async () => {
 		polybase.applySchema(Schema)
@@ -21,9 +19,7 @@ const Settings: React.FC = () => {
 			.record(user?.id!)
 			.call('del')
 			.then(() => {
-				return storage.clear()
-			})
-			.then(() => {
+				setUser(null)
 				return auth.signOut()
 			})
 			.then(console.log)
