@@ -6,10 +6,6 @@ const Home: React.FC = () => {
 	const polybase = usePolybase()
 	const query = polybase.collection('Post').sort('createdAt', 'desc')
 
-	const following: string[] = ['13231', '432432']
-
-	const promises = following.map(user => polybase.collection('Post').where('author', '==', polybase.collection('User').record(user)).sort('createdAt', 'desc'))
-
 	return (
 		<IonPage>
 			<IonHeader>
