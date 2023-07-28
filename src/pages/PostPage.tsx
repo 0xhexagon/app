@@ -1,11 +1,32 @@
 import { RouteComponentProps } from "react-router"
+import Post from "../components/Post"
+import { IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from "@ionic/react"
+import { useDocument, usePolybase } from "@polybase/react"
 
-interface PostPageProps extends RouteComponentProps <{
+interface PostPageProps extends RouteComponentProps<{
 	postId: string
-}> {}
-const PostPage: React.FC<PostPageProps> = ({match}) => {
+}> { }
+const PostPage: React.FC<PostPageProps> = ({ match }) => {
+	const polybase = usePolybase()
+	const {data, loading } = useDocument(polybase.collection<Post>('Post').record(match.params.postId))
+
+	if(loading) return <h1>loading...</h1>
+	if(!data) return <h1>not post found...</h1>
+
 	return (
-		<h1>Post id: {match.params.postId}</h1>
+		<IonPage>
+			<IonHeader>
+				<IonToolbar>
+					<IonTitle>Post</IonTitle>
+					<IonButtons slot='start'>
+						<IonBackButton defaultHref='/app' />
+					</IonButtons>
+				</IonToolbar>
+			</IonHeader>
+			<IonContent>
+				<Post post={data.data} />
+			</IonContent>
+		</IonPage>
 	)
 }
 

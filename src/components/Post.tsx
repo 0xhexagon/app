@@ -2,12 +2,19 @@ import { IonButton, IonCol, IonContent, IonGrid, IonIcon, IonItem, IonPopover, I
 import Avatar from './Avatar';
 import './Post.css'
 import { chatbubbleOutline, ellipsisHorizontal, heartOutline, repeatOutline } from 'ionicons/icons';
+import { useDocument, usePolybase } from '@polybase/react';
+import { IPost } from '../types/Schemas';
 
-interface IProps {
-	id: string,
-	commented?: boolean,
+interface Props {
+	post: IPost,
 }
-const Post: React.FC<IProps> = ({ id, commented = false }) => {
+const Post: React.FC<Props> = ({ post }) => {
+	const polybase = usePolybase()
+	const {data: authorData, loading } = useDocument(polybase.collection('User').record(post.author.id))
+	// fetch likes, reposts and replies
+		
+	if(loading) return <h1>loading...</h1>
+
 	return (
 		<div className='thread'>
 			<IonGrid className='thread-header'>
@@ -16,14 +23,15 @@ const Post: React.FC<IProps> = ({ id, commented = false }) => {
 						<Avatar />
 					</IonCol>
 					<IonCol className='thread-header-col'>
-						<p>Pato Purific</p>
-						<p className='thread-username'>@patopurific</p>
+						<p>{authorData?.data.name}</p>
+						<p className='thread-username'>{authorData?.data.username}</p>
+						{/* <p className='thread-time'>{new Date(postData.data.createdAt).toString()}</p> */}
 					</IonCol>
 					<IonCol size='auto' className='thread-header-col'>
-						<IonButton fill='clear' size='small' id={`thread-options-${id}`}>
+						<IonButton fill='clear' size='small' id={`thread-options-${post.id}`}>
 							<IonIcon slot='icon-only' icon={ellipsisHorizontal} />
 						</IonButton>
-						<IonPopover trigger={`thread-options-${id}`}>
+						<IonPopover trigger={`thread-options-${post.id}`}>
 							<IonContent>
 								<IonItem button={true} detail={false}>Share...</IonItem>
 								<IonItem button={true} detail={false}>Report</IonItem>
@@ -32,11 +40,10 @@ const Post: React.FC<IProps> = ({ id, commented = false }) => {
 					</IonCol>
 				</IonRow>
 			</IonGrid>
-			<div className={`thread-content ${commented ? 'thread-content-commented' : 'thread-content-empty'}`}>
-				<p className='thread-body'>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+			<div className={`thread-content ${false ? 'thread-content-commented' : 'thread-content-empty'}`}>
+				<p className='thread-body'>{post.body}</p>
 				<div className="thread-imgs">
-					<img src="https://picsum.photos/300/200" alt="sample"/>
-					<img src="https://picsum.photos/300/200" alt="sample"/>
+					{/* <img src="https://picsum.photos/300/200" alt="sample"/> */}
 				</div>
 				<div className="thread-content-buttons">
 					<IonButton fill='clear' size='small'>

@@ -25,6 +25,7 @@ const Profile: React.FC = () => {
 						<IonCol>
 							<p>{user?.name}</p>
 							<p>{user?.username}</p>
+							<p>{user?.bio}</p>
 						</IonCol>
 						<IonCol>
 							<Avatar />

@@ -1,7 +1,15 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import Post from '../components/Post';
+import PostList from '../components/PostList';
+import { usePolybase } from '@polybase/react';
 
 const Home: React.FC = () => {
+	const polybase = usePolybase()
+	const query = polybase.collection('Post').sort('createdAt', 'desc')
+
+	const following: string[] = ['13231', '432432']
+
+	const promises = following.map(user => polybase.collection('Post').where('author', '==', polybase.collection('User').record(user)).sort('createdAt', 'desc'))
+
 	return (
 		<IonPage>
 			<IonHeader>
@@ -10,11 +18,7 @@ const Home: React.FC = () => {
 				</IonToolbar>
 			</IonHeader>
 			<IonContent>
-				<Post id='1' commented/>
-				<Post id='2'/>
-				<Post id='3'/>
-				<Post id='4'/>
-				<Post id='5'/>
+				<PostList query={query} />
 			</IonContent>
 		</IonPage>
 	);

@@ -43,6 +43,7 @@
 }
 .thread-content > p {
 	margin: 0;
+	padding: 10px 0;
 }
 .thread-content > .thread-imgs {
 	display: flex;

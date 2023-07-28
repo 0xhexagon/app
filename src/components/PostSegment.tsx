@@ -1,14 +1,10 @@
 import React from 'react'
 import Post from './Post'
+import PostList from './PostList'
 
 const PostSegment: React.FC = () => {
 	return (
-		<>
-			<Post id='1'/>
-			<Post id='2'/>
-			<Post id='3'/>
-			<Post id='4'/>
-		</>
+		<PostList />
 	)
 }
 
