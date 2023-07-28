@@ -1,8 +1,8 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'twitter-web3',
+  appId: 'com.hexagon.app',
+  appName: 'hexagon',
   webDir: 'dist',
   server: {
     androidScheme: 'https'

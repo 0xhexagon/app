@@ -10,7 +10,9 @@ collection Post {
 	nsfw: boolean;
 	assets?: string[];
 
-	constructor(id: string, author: User, createdAt: number, body: string, community?: Community, type: string, nsfw?: boolean, assets?: string[]){
+	@index(createdAt, author);
+
+	constructor(id: string, author: User, createdAt: number, body: string, type: string, nsfw?: boolean, assets?: string[], community?: Community){
 		this.id = id;
 		this.author = author;
 		this.createdAt = createdAt;

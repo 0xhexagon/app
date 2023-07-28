@@ -1,22 +1,7 @@
 import { createContext, useContext, useState } from "react"
 import { useStorage } from "./storage"
+import { User } from "../types/Schemas"
 
-export class User {
-	id: string
-	publicKey: string
-	name: string
-	username: string
-	bio?: string
-	profileNft?: string
-	poaps?: string[]
-
-	constructor() {
-		this.id = ''
-		this.publicKey = ''
-		this.name = ''
-		this.username = ''
-	}
-}
 
 //Context with default value
 interface UserContextType {
