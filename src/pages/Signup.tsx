@@ -1,7 +1,8 @@
 import { IonButton, IonContent, IonHeader, IonInput, IonPage } from "@ionic/react"
 import { useState } from "react"
-import { User, useUser } from "../context/user"
+import { useUser } from "../context/user"
 import { useAuth, usePolybase } from "@polybase/react"
+import { User } from "../types/Schemas"
 
 const Signup: React.FC = () => {
 	const { setUser } = useUser()
