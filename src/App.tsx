@@ -9,6 +9,7 @@ import { useIsAuthenticated } from '@polybase/react';
 import { useUser } from './context/user';
 import { useEffect } from 'react';
 import PostPage from './pages/PostPage.js';
+import UserPage from './pages/UserPage';
 
 setupIonicReact();
 
@@ -31,6 +32,7 @@ const App: React.FC = () => {
 							{/* Normal app usage */}
 							<Route path='/app' render={(props) => <Tabs {...props} />} />
 							<Route path='/post/:postId' render={(props) => <PostPage {...props} />} />
+							<Route path='/user/:userId' render={(props) => <UserPage {...props} />} />
 
 							<Route exact path='/'><Redirect to='/app' /></Route>
 							<Route exact path='/login'><Redirect to='/app' /></Route>

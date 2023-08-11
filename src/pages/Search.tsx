@@ -1,7 +1,7 @@
 import { IonAvatar, IonContent, IonHeader, IonItem, IonLabel, IonList, IonListHeader, IonPage, IonSearchbar, IonTitle, IonToolbar, SearchbarCustomEvent } from '@ionic/react';
 import { CollectionRecordResponse } from '@polybase/client';
 import { usePolybase } from '@polybase/react';
-import { FormEvent, useState } from 'react';
+import { useState } from 'react';
 
 const Search: React.FC = () => {
 	const polybase = usePolybase()
@@ -38,6 +38,7 @@ const Search: React.FC = () => {
 		const { data } = await polybase
 			.collection('Post')
 			.where('body', '>=', query)
+			.limit(5)
 			.get()
 
 		return data
@@ -71,39 +72,53 @@ const Search: React.FC = () => {
 					<IonTitle>Discover</IonTitle>
 				</IonToolbar>
 				<IonToolbar style={{ padding: '0 10px' }}>
-					<IonSearchbar animated debounce={2000} enterkeyhint='search' onInput={() => setLoading(true)} onIonInput={search} ></IonSearchbar>
+					<IonSearchbar animated debounce={100} enterkeyhint='search' onInput={() => setLoading(true)} onIonInput={search} ></IonSearchbar>
 				</IonToolbar>
 			</IonHeader>
 
-			<IonContent className='ion-padding'>
+			<IonContent>
 				{loading
 					? <>
 						<h1>loading results...</h1>
 					</>
-					:
-					<IonList>
-						<IonListHeader>Users</IonListHeader>
-						{users.map((user, index) => (
-							<IonItem key={index}>
-								<IonAvatar>
-									<img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-								</IonAvatar>
-								<IonLabel key={index}>{user.data.name}</IonLabel>
-							</IonItem>
-						))}
-						<IonListHeader>Communities</IonListHeader>
-						{communities.map((community, index) => (
-							<IonItem key={index}>
-								<IonLabel key={index}>{community.data.name}</IonLabel>
-							</IonItem>
-						))}
-						<IonListHeader>Posts</IonListHeader>
-						{posts.map((post, index) => (
-							<IonItem key={index}>
-								<IonLabel key={index}>{post.data.body}</IonLabel>
-							</IonItem>
-						))}
+					: users.length || communities.length || posts.length 
+					? <IonList>
+						{users.length ?
+							<>
+								<IonListHeader>Users</IonListHeader>
+								{users.map((user, index) => (
+									<IonItem routerLink={`/user/${user.data.id}`} key={index}>
+										<IonAvatar className='ion-margin-end'>
+											<img alt={`${user.data.name} profile picture`} src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+										</IonAvatar>
+										{/*Add username*/}
+										<IonLabel>{user.data.name}</IonLabel>
+									</IonItem>
+								))}
+							</> : ''
+						}
+						{communities.length ?
+							<>
+								<IonListHeader>Communities</IonListHeader>
+								{communities.map((community, index) => (
+									<IonItem key={index}>
+										<IonLabel key={index}>{community.data.name}</IonLabel>
+									</IonItem>
+								))}
+							</> : ''
+						}
+						{posts.length ?
+							<>
+								<IonListHeader>Posts</IonListHeader>
+								{posts.map((post, index) => (
+									<IonItem key={index}>
+										<IonLabel key={index}>{post.data.body}</IonLabel>
+									</IonItem>
+								))}
+							</> : ''
+						}
 					</IonList>
+					: <h1 className='ion-padding'>* discover component *</h1>
 
 				}
 			</IonContent>

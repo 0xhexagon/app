@@ -3,8 +3,9 @@ import { IonButton, IonPage } from "@ionic/react"
 import "./Login.css"
 import { useAuth, usePolybase } from "@polybase/react"
 import { AuthState } from "@polybase/auth"
-import { User, useUser } from "../context/user"
+import { useUser } from "../context/user"
 import { CollectionRecordResponse } from "@polybase/client"
+import { User } from "../types/Schemas"
 
 const Login: React.FC = () => {
 	const { auth, loading } = useAuth()
