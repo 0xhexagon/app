@@ -1,8 +1,8 @@
 {
 	"canisters": {
-		"posts": {
+		"hexagon": {
 			"type": "motoko",
-			"main": "src/posts.mo"
+			"main": "src/hexagon.mo"
 		},
 		"internet_identity": {
 			"type": "custom",
@@ -17,15 +17,12 @@
 	},
 	"defaults": {
 		"build": {
-			"args": "",
 			"packtool": ""
 		}
 	},
-	"output_env_file": ".env",
-	"version": 1,
 	"networks": {
 		"local": {
-			"bind": "127.0.0.1:8000",
+			"bind": "0.0.0.0:8000",
 			"type": "ephemeral"
 		},
 		"ic": {
@@ -34,5 +31,6 @@
 			],
 			"type": "persistent"
 		}
-	}
+	},
+	"version": 1
 }
