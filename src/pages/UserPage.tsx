@@ -1,18 +1,13 @@
 import { IonBackButton, IonButtons, IonHeader, IonPage, IonTitle, IonToolbar } from "@ionic/react"
-import { useDocument, usePolybase } from "@polybase/react"
 import { RouteComponentProps } from "react-router"
 
-interface UserPageProps extends RouteComponentProps <{
+interface UserPageProps extends RouteComponentProps<{
 	userId: string
-}> {}
-const UserPage: React.FC<UserPageProps> = ({match}) => {
-	const polybase = usePolybase()
-	const {data, loading } = useDocument(polybase.collection('User').record(match.params.userId))
-
-	console.log({data})
-
-	if(loading) return <h1>loading...</h1>
-	if(!data) return <h1>no user found...</h1>
+}> { }
+const UserPage: React.FC<UserPageProps> = ({ match }) => {
+	// load user page from the chain
+	if (loading) return <h1>loading...</h1>
+	if (!data) return <h1>no user found...</h1>
 
 	return (
 		<IonPage>

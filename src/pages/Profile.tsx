@@ -8,7 +8,7 @@ import { useUser } from '../context/user';
 
 const Profile: React.FC = () => {
 	const [postSegment, setPostSegment] = useState<boolean>(true)
-	const {user} = useUser()
+	const { user } = useUser()
 	return (
 		<IonPage>
 

@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react"
 import { useStorage } from "./storage"
-import { User } from "../types/Schemas"
+import { User } from "../types/user.class"
 
 
 //Context with default value

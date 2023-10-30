@@ -1,20 +1,15 @@
 # HEXAGON
-A decentralized social media platform based on polybase and ionic.
+A decentralized social media platform based on ICP and ionic.
 
-## Stack
-- Ionic 7 + react
-- Polybase + Polybase auth
+## Local run
+In order to local run this project, you will have to locally deploy the canisters found [here](https://github.com/0xhexagon/canisters).
+After that, you install the proyect dependencies with `npm install` and run the local server with `npm run dev`.
 
-# TODO
-- [ ] Replace Polybase auth with rainbowkit + wagmi
-- [ ] Buid the feed fetching system
-- [ ] Create follows objets
-- [ ] Display follows (Followers and followees) of each user
-- [ ] Create likes and make them appear on each post
-- [ ] Create replies
-- [ ] Add the replies to the PostPage
-- [ ] Create reposts
-- [ ] User page
-- [ ] Add extra functionality to post creation (such as images, tags, community selection)
-- [ ] Create communities
-- [ ] Join communities
+## TODOs
+- [ ] login flow
+- [ ] logout flow
+- [ ] create post flow
+
+### Nice to have
+- [ ] likes flow
+- [ ] follow flow

@@ -2,16 +2,12 @@ import { IonButton, IonCol, IonContent, IonGrid, IonIcon, IonItem, IonPopover, I
 import Avatar from './Avatar';
 import './Post.css'
 import { chatbubbleOutline, ellipsisHorizontal, heartOutline, repeatOutline } from 'ionicons/icons';
-import { useDocument, usePolybase } from '@polybase/react';
-import { IPost } from '../types/Schemas';
+import { IPost } from '../types/post.type';
 
 interface Props {
 	post: IPost,
 }
 const Post: React.FC<Props> = ({ post }) => {
-	const polybase = usePolybase()
-	const {data: authorData, loading } = useDocument(polybase.collection('User').record(post.author.id))
-	// fetch likes, reposts and replies
 		
 	if(loading) return <h1>loading...</h1>
 

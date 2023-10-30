@@ -7,7 +7,7 @@
 	background-color: white;
 }
 
-#login-container img {
+#login-container>img {
 	width: 50%;
 	margin-bottom: 50px;
 }

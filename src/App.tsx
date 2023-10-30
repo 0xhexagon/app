@@ -5,29 +5,45 @@ import { IonReactRouter } from '@ionic/react-router';
 import Tabs from './pages/Tabs';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import { useIsAuthenticated } from '@polybase/react';
 import { useUser } from './context/user';
 import { useEffect } from 'react';
 import PostPage from './pages/PostPage.js';
 import UserPage from './pages/UserPage';
+import { useCanister, useConnect } from '@connect2ic/react';
+import { User } from './types/user.class';
 
 setupIonicReact();
 
 const App: React.FC = () => {
-	const [isLoggedIn, loading] = useIsAuthenticated()
-	const { user, getUserFromStorage } = useUser()
+
+	const { user, setUser } = useUser()
+	const { isConnected, principal } = useConnect()
+	const [canister, { loading }] = useCanister("hexagon")
+
+	if (loading) return <h1>loading</h1>
 
 	useEffect(() => {
-		getUserFromStorage()	
-	}, [])
+		if (isConnected) {
+			getUserFromCanister()
+		}
+	}, [isConnected])
 
-	if(loading) return <h1>loading</h1>
+	const getUserFromCanister = async () => {
+		try {
+			const [result] = await canister.readUser() as User[]
+			console.log({result})
+			if (result) setUser(result)
+		} catch(err) {
+			console.error(`No user found for ${principal}`)
+			console.error(err)
+		}
+	}
 
 	return (
 		<IonApp>
 			<IonReactRouter>
 				{
-					isLoggedIn && user
+					isConnected && user
 						? <>
 							{/* Normal app usage */}
 							<Route path='/app' render={(props) => <Tabs {...props} />} />
@@ -38,7 +54,7 @@ const App: React.FC = () => {
 							<Route exact path='/login'><Redirect to='/app' /></Route>
 							<Route exact path='/signup'><Redirect to='/app' /></Route>
 						</>
-						: isLoggedIn
+						: isConnected
 							? <>
 								{/* Signup process (user registration) */}
 								<Route exact path='/signup' render={() => <Signup />} />

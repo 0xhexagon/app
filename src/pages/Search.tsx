@@ -1,47 +1,23 @@
 import { IonAvatar, IonContent, IonHeader, IonItem, IonLabel, IonList, IonListHeader, IonPage, IonSearchbar, IonTitle, IonToolbar, SearchbarCustomEvent } from '@ionic/react';
-import { CollectionRecordResponse } from '@polybase/client';
-import { usePolybase } from '@polybase/react';
 import { useState } from 'react';
 
 const Search: React.FC = () => {
-	const polybase = usePolybase()
 
 	const [loading, setLoading] = useState(false)
-	const [users, setUsers] = useState<CollectionRecordResponse<any, any>[]>([])
-	const [communities, setCommunities] = useState<CollectionRecordResponse<any, any>[]>([])
-	const [posts, setPosts] = useState<CollectionRecordResponse<any, any>[]>([])
+	const [users, setUsers] = useState([])
+	const [communities, setCommunities] = useState([])
+	const [posts, setPosts] = useState([])
 
 	const getUsers = async (query: string) => {
-		const { data: byNameResults } = await polybase
-			.collection('User')
-			.where('name', '>=', query)
-			.get()
 
-		const { data: byUsernameResults } = await polybase
-			.collection('User')
-			.where('username', '>=', query)
-			.get()
-
-		return [...byNameResults, ...byUsernameResults]
 	}
 
 	const getCommunities = async (query: string) => {
-		const { data } = await polybase
-			.collection('Community')
-			.where('name', '>=', query)
-			.get()
 
-		return data
 	}
 
 	const getPosts = async (query: string) => {
-		const { data } = await polybase
-			.collection('Post')
-			.where('body', '>=', query)
-			.limit(5)
-			.get()
 
-		return data
 	}
 
 	const search = async ({ target }: SearchbarCustomEvent) => {
